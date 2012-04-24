@@ -2,6 +2,15 @@ package com.whorrhouse.homestuck.pesterchum.proto;
 
 import java.util.Calendar;
 
+/**
+ * Class AccountAction contains information about bans and locks tied to a specific account.
+ * <pre>
+ * 	AccountAction a = new AccountAction();
+ * </pre>
+ * @author tehhiper1
+ * @version 1.0
+ *
+ */
 public class AccountAction
 {
 	private boolean isBanned;
