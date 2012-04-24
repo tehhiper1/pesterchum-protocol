@@ -8,7 +8,7 @@ import java.util.Calendar;
  * 	AccountAction a = new AccountAction();
  * </pre>
  * @author tehhiper1
- * @version 1.0
+ * @version 1.0.1
  *
  */
 public class AccountAction
@@ -26,22 +26,42 @@ public class AccountAction
 	{
 		
 	}
+	/**
+	 * Checks the ban status of this Account.
+	 * @return <b>true</b> if the account is banned<br><b>false</b> if it is not banned
+	 */
 	public boolean getBanStatus()
 	{
 		return isBanned;
 	}
+	/**
+	 * Reverses the ban status value.
+	 */
 	private void toggleBanStatus()
 	{
 		isBanned = !isBanned;
 	}
+	/**
+	 * Checks the if this Account is locked or not.
+	 * @return <b>true</b> if the account is locked<br><b>false</b> if it is not locked
+	 */
 	public boolean getLockStatus()
 	{
 		return isLocked;
 	}
+	/**
+	 * Reverses the lock status value.
+	 */
 	private void toggleLockStatus()
 	{
 		isLocked = !isLocked;
 	}
+	/**
+	 * Flags the account as being banned.
+	 * @param reason Why the user was banned.
+	 * @param duration How long after the current date the user will be banned for.
+	 * @return <b>true</b> if setting the ban was successful<br><b>false</b> if setting the ban was unsuccessful
+	 */
 	public boolean setBan(String reason, int duration)
 	{
 		toggleBanStatus();
@@ -64,10 +84,55 @@ public class AccountAction
 		return true;
 		
 	}
+	/**
+	 * Public method to set the lock status.
+	 * @return <b>true</b> if the lock was set<br><b>false</b> if the lock failed to set
+	 */
 	public boolean setLock()
 	{
-		toggleLockStatus();
-		return true;
+		if(!isLocked)
+		{
+			toggleLockStatus();
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
-	
+	/**
+	 * Public method to clear the lock status.
+	 * @return <b>true</b> if the lock was cleared<br><b>false</b> if the lock failed to clear
+	 */
+	public boolean clearLock()
+	{
+		if(isLocked)
+		{
+			toggleLockStatus();
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	/**
+	 * Public method to clear ban status
+	 * @return <b>true</b> if the ban was cleared<br><b>false</b> if the ban failed to clear
+	 */
+	public boolean clearBan()
+	{
+		if(isBanned)
+		{
+			toggleBanStatus();
+			banDate = null;
+			banEnds = null;
+			customBanReason = null;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
